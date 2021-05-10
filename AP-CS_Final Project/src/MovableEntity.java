@@ -45,15 +45,15 @@ public abstract class MovableEntity //This is a template abstract class that can
 		
 	} //End of move method
 	
-	public Point getLocation()
-	{
-		return location;
-	}
+	public Point getLocation() //Location getter
+	{ //Location getter start
+		return location; //Returns the location
+	} //Location getter end
 	
-	public MovableEntity setLocation(Point newPoint)
-	{
-		location = newPoint;
-		return this;
-	}
+	public MovableEntity setLocation(Point newPoint) //Location setter
+	{ //setter start
+		location = newPoint; //Sets the location to the new point
+		return this; //Returns this to chain
+	} //Setter end
 	
 } //Movable entity end
