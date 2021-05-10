@@ -6,6 +6,6 @@ public interface Entity //Entity Interface which will be implemented by Abstract
 
 	public ArrayList<Object> getGraphicsInfo(); //Gets the resources for how to draw the object. I made it an object array because it may contain many different data types
 	
-	public Point getPosition(); //Gives the location on the board in X and Y format
+	public Point getLocation(); //Gives the location on the board in X and Y format
 	
 } //Entity end
