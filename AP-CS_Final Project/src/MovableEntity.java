@@ -34,7 +34,7 @@ public abstract class MovableEntity //This is a template abstract class that can
 			 
 		case RIGHT: //If the user wants to move right
 			
-			if (this.location.x == Maze.getLength()-1) { return false; } //If they are in the right most position, then it returns false to avoid going out of bounds
+			if (this.location.x == Maze.getWidth()-1) { return false; } //If they are in the right most position, then it returns false to avoid going out of bounds
 			
 			this.location.x = this.location.x+1; //Moves right
 			break; // Breaks to not run other case senarios
