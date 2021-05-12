@@ -39,9 +39,9 @@ public class User //User class
 		return angle; //Returns the angle
 	} //Getter end
 
-	public void setSpeed(int speed) //Angle setter
+	public void setAngle(int angle) //Angle setter
 	{ //Setter start
-		this.speed = speed; //Updates the angle
+		this.angle = angle; //Updates the angle
 	} //Seter end
 
 } //User end
