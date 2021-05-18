@@ -1,57 +1,46 @@
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
-import javax.swing.JPanel;//import library
+import javax.swing.JFrame;
 
-public class ContentPanel extends JPanel{
-	//declare all the variables
-    private MazeGenerator maze;
-    
-    //constructor
-    public ContentPanel(MazeGenerator maze) {
-    	super();
-    	this.setBackground(Color.BLUE);
-    	this.maze = maze;
-    	
-    }
-    
-    //paintComponet that would take care all the drawing 
-    public void paintComponent(Graphics2D g) {
-    	System.out.println("Yay");
-    	super.paintComponent(g);
-    	drawBirdView(g);
-    	
-    	
-    }
-    
-    // draw the small 2D map represent map
-    public void drawBirdView(Graphics2D g) {
-    	
-    	System.out.println("hi");
-        Color c1 = Color.DARK_GRAY;
-        Color c2 = Color.white;
-        Color c3 = Color.BLUE;
-    	g.setColor(Color.ORANGE);
-    	g.fillRect(0, 0, 400, 200);
-    	System.out.println("lo");
-    	for (int i=0; i<maze.getGridDimensionY();i++) {
-    		for (int j=0; j<maze.getGridDimensionX();j++) {
-    			if (maze.getGrid()[i][j]==1) {
-    				g.setColor(c1);
-    			}
-    			if (maze.getGrid()[i][j]==0) {
-    				g.setColor(c2);
-    			}
-    			if (maze.getGrid()[i][j]==2) {
-    				g.setColor(c3);
-    			}
-    			if (maze.getGrid()[i][j]==3) {
-    				g.setColor(c3);
-    			}
-    			
-    		    g.fillRect(j*maze.getGridDimensionX(), i*maze.getGridDimensionY(), 400/maze.getGridDimensionX(), 200/maze.getGridDimensionY());
-    		}
-    	}
-    }
+public class Driver {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		JFrame frame = new JFrame();
+		frame.setSize(800,400);
+		
+		
+		frame.setResizable(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		MazeGenerator x = new MazeGenerator(10,10);
+		x.updateGrid();
+		x.draw();
+		int[][] arr2D = x.getGrid();
+		int[][] arr2D2 = new int[arr2D[0].length][arr2D.length];
+		for(int i=0;i<arr2D.length;i++) {
+			for(int j=0; j<arr2D[0].length;j++) {
+			    arr2D2[j][i]=arr2D[i][j];
+			}
+		}
+		ContentPanel myPanel = new ContentPanel(arr2D2, new User());
+		
+		
+		frame.getContentPane().add(myPanel);
+		frame.setVisible(true);
+//		for (int i =0;i<100000; i++) {
+//			try {
+//				Thread.sleep(100);
+//				frame.repaint();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+
+		frame.repaint();
+		
+
+	}
+
 }
