@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.ArrayList; //Imports arraylists to store graphics data
 
 public class User //User class
@@ -5,18 +6,22 @@ public class User //User class
 { //Enemy start
 	
 	int speed; //Int for how fast it is going
-  int angle; //Which way the enemy is facing
+	int angle; //Which way the enemy is facing
 	
 	public User() //User defualt constructor
 	{ //Default start
+		super();
+		this.location = new Point(0,0);
 		this.speed = 0; //Sets the speed to zero
-    this.angle = 0; //Sets the angle to strait ahead
+		this.angle = 0; //Sets the angle to strait ahead
+		
 	} //Default end
 	
 	public User(int speed, int angle) //All paramater constructor
 	{ //All paramater constructor start
+		this();
 		this.speed = speed; // Sets the speed to the nput
-    this.angle = angle; //Sets the angle to the user defined input
+		this.angle = angle; //Sets the angle to the user defined input
 	} //All paramater constructor end
 
 	public ArrayList<Object> getGraphicsInfo() //Getter for the graphics info
@@ -43,5 +48,7 @@ public class User //User class
 	{ //Setter start
 		this.angle = angle; //Updates the angle
 	} //Seter end
+	
+	
 
 } //User end
