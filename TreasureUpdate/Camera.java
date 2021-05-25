@@ -7,6 +7,7 @@ public class Camera implements KeyListener{
 	public boolean left, right, forward, back;
 	public final double MOVE_SPEED = .08;
 	public final double ROTATION_SPEED = .045;
+	boolean checkGold;
 	public Camera(double x, double y, double xd, double yd, double xp, double yp) {
 		xPos = x;
 		yPos = y;
@@ -24,6 +25,9 @@ public class Camera implements KeyListener{
 			forward = true;
 		if((key.getKeyCode() == KeyEvent.VK_DOWN))
 			back = true;
+		if ((key.getKeyCode()== KeyEvent.VK_SPACE)) {
+			checkGold = true;
+		}
 	}
 	public void keyReleased(KeyEvent key) {
 		if((key.getKeyCode() == KeyEvent.VK_LEFT))
@@ -34,7 +38,15 @@ public class Camera implements KeyListener{
 			forward = false;
 		if((key.getKeyCode() == KeyEvent.VK_DOWN))
 			back = false;
+		if ((key.getKeyCode()== KeyEvent.VK_SPACE)) {
+			checkGold = false;
+		}
 	}
+	
+	public boolean ifCheckGold() {
+		return checkGold;
+	}
+	
 	public void update(int[][] map) {
 		if(forward) {
 			if(map[(int)(xPos + xDir * MOVE_SPEED)][(int)yPos] == 0 || map[(int)(xPos + xDir * MOVE_SPEED)][(int)yPos] == 7) {
@@ -46,7 +58,7 @@ public class Camera implements KeyListener{
 		if(back) {
 			if(map[(int)(xPos - xDir * MOVE_SPEED)][(int)yPos] == 0 || map[(int)(xPos - xDir * MOVE_SPEED)][(int)yPos] == 7)
 				xPos-=xDir*MOVE_SPEED;
-			if(map[(int)xPos][(int)(yPos - yDir * MOVE_SPEED)]==0)
+			if(map[(int)xPos][(int)(yPos - yDir * MOVE_SPEED)]==0 || map[(int)xPos][(int)(yPos - yDir * MOVE_SPEED)]==7)
 				yPos-=yDir*MOVE_SPEED;
 		}
 		if(right) {
