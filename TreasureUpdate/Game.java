@@ -60,8 +60,13 @@ public class Game extends JFrame implements Runnable{
 		setBackground(Color.black);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		addGold();
+		addGold(5);
 		start();
+	}
+	
+	public int[][] getMap()
+	{
+		return map;
 	}
 	
 	public void updateScore()
@@ -69,9 +74,9 @@ public class Game extends JFrame implements Runnable{
 		score++;
 	}
 	
-	public static void addGold()
+	public static void addGold(int gold)
 	{
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < gold; i++) {
 			int x = 0, y = 0;
 			while(map[x][y] != 0) {
 				x = 1+ ((int) (Math.random() * map.length-2));
@@ -108,17 +113,12 @@ public class Game extends JFrame implements Runnable{
 		}
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
-//		g.setFont(new Font("Serif",Font.BOLD, 14));
-//		g.drawString(new String("Score: " + score), 0, 5);
-		g.drawString("HI",5,5);
-		JLabel lab = new JLabel();
-		lab.setText("Score: " + score);
-		lab.setLocation(5, 5);
-		lab.setFont(new Font("Serif", Font.BOLD, 12));
-		this.add(lab);
-		lab.setVisible(true);
+		g.setFont(new Font("Serif",Font.BOLD, 20));
+		g.setColor(Color.RED);
+		g.drawString(new String("Score: " + score), 550, 55);
 		bs.show();
 	}
+	
 	public void run() {
 		long lastTime = System.nanoTime();
 		final double ns = 1000000000.0 / 60.0;//60 times per second
@@ -131,12 +131,19 @@ public class Game extends JFrame implements Runnable{
 			lastTime = now;
 			while (delta >= 1)//Make sure update is only happening 60 times a second
 			{
+				if (camera.ifCheckGold()) {
+					if (7 == map[(int) camera.xPos][(int) camera.yPos]) {
+						map[(int) camera.xPos][(int) camera.yPos] = 0;
+						score++;
+						System.out.println();
+						addGold(1);
+					}
+				}
 				//handles all of the logic restricted time
 				screen.update(camera, pixels);
 				camera.update(map);
 				delta--;
 			}
-
 			render();//displays to the screen unrestricted time
 			
 		
