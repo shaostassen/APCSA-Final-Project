@@ -30,4 +30,7 @@ public class Texture {
 	public static Texture brick = new Texture("Textures/placeholder2.png", 64);
 	public static Texture bluestone = new Texture("Textures/placeholder3.png", 64);
 	public static Texture stone = new Texture("Textures/placeholder4.png", 64);
+
+	public static Texture gold = new Texture("Textures/placeholder5.png",64);
+
 }
