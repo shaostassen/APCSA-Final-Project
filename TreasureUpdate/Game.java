@@ -21,6 +21,7 @@ public class Game extends JFrame implements Runnable{
 	private BufferedImage image;
 	public int[] pixels;
 	public ArrayList<Texture> textures;
+	public ArrayList<Sprite> sprites;
 	public Camera camera;
 	public Screen screen;
 	public static int[][] map = 
@@ -60,6 +61,7 @@ public class Game extends JFrame implements Runnable{
 		setBackground(Color.black);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		sprites = new ArrayList<Sprite>(5);
 		addGold(5);
 		start();
 	}
@@ -74,7 +76,7 @@ public class Game extends JFrame implements Runnable{
 		score++;
 	}
 	
-	public static void addGold(int gold)
+	public void addGold(int gold)
 	{
 		for (int i = 0; i < gold; i++) {
 			int x = 0, y = 0;
@@ -83,6 +85,7 @@ public class Game extends JFrame implements Runnable{
 				y = 1+ ((int) (Math.random() * map.length-2));
 			}
 			map[x][y] = 7;
+			sprites.add(new Sprite(x,y));
 		}
 		
 		for (int[] arr: map) {
@@ -134,6 +137,11 @@ public class Game extends JFrame implements Runnable{
 				if (camera.ifCheckGold()) {
 					if (7 == map[(int) camera.xPos][(int) camera.yPos]) {
 						map[(int) camera.xPos][(int) camera.yPos] = 0;
+						for (int i = 0; i < sprites.size(); i++) {
+							if (sprites.get(i).getX() == camera.xPos && sprites.get(i).getY() == camera.yPos) {
+								sprites.remove(i);
+							}
+						}
 						score++;
 						System.out.println();
 						addGold(1);
@@ -149,6 +157,17 @@ public class Game extends JFrame implements Runnable{
 		
 		}
 	}
+	
+	public static void sort(ArrayList<Sprite> arr) {
+		for (int i = 1; i < arr.size(); i++) {
+			int spot = i;
+			while (spot > 0 && camera.getDistance() < camera.getDistance()) {
+				swap(arr,spot,spot-1);
+				spot--;
+			}
+		}
+	}
+	
 	public static void main(String [] args) {
 		Game game = new Game();
 	}
