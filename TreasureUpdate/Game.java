@@ -1,3 +1,4 @@
+  
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -128,10 +129,53 @@ public class Game extends JFrame implements Runnable{
 //		}
 		
 
+		g.setColor(Color.RED);
+		g.fillRect(0,30,180,180);
+		System.out.println(camera.xDir);
+		System.out.println(camera.yDir);
+	    for(int i = 0;i<map[0].length;i++) {
+	    	for (int j= 0;j<map.length;j++) {
+	    		if(map[i][j]==0) {
+	    			g.setColor(Color.white);
+	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+	    		}
+	    		if(map[i][j]==1) {
+	    			g.setColor(Color.black);
+	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+	    		}
+	    		if(map[i][j]==2) {
+	    			g.setColor(Color.black);
+	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+	    		}
+	    		if(map[i][j]==3) {
+	    			g.setColor(Color.black);
+	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+	    		}
+	    		if(map[i][j]==4) {
+	    			g.setColor(Color.black);
+	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+	    		}
+	    		if(map[i][j]==7) {
+	    			g.setColor(Color.white);
+	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+	    			g.setColor(new Color(242,252,26));
+	    			g.fillOval(i*180/map[0].length+3,30+j*180/map.length+3,180/map[0].length-3,180/map.length-3);
+	    			
+	    		}
+	    	}
+	    }
+	    g.setColor(Color.green);
+	    int xP = (int) Math.round(camera.xPos);
+	    int yP = (int) Math.round(camera.yPos);
+		g.fillOval(xP*180/map[0].length-3,30+yP*180/map.length-3,180/map[0].length-3,180/map.length-3);
+		g.setColor(Color.orange);
+		int angle= (int) Math.asin(camera.yDir);
 		
 		g.setFont(new Font("Serif",Font.BOLD, 20));
 		g.setColor(Color.RED);
 		g.drawString(new String("Score: " + score), 550, 55);
+		
+		
 		
 		for (int x = 0; x < buffer.length; x++) {
 			for (int y = 0; y < buffer[x].length; y++) {
