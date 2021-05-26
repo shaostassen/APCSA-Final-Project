@@ -131,8 +131,8 @@ public class Game extends JFrame implements Runnable{
 
 		g.setColor(Color.RED);
 		g.fillRect(0,30,180,180);
-		System.out.println(camera.xDir);
-		System.out.println(camera.yDir);
+		//System.out.println(camera.xDir);
+		//System.out.println(camera.yDir);
 	    for(int i = 0;i<map[0].length;i++) {
 	    	for (int j= 0;j<map.length;j++) {
 	    		if(map[i][j]==0) {
@@ -168,8 +168,16 @@ public class Game extends JFrame implements Runnable{
 	    int xP = (int) Math.round(camera.xPos);
 	    int yP = (int) Math.round(camera.yPos);
 		g.fillOval(xP*180/map[0].length-3,30+yP*180/map.length-3,180/map[0].length-3,180/map.length-3);
-		g.setColor(Color.orange);
+		
 		int angle= (int) Math.asin(camera.yDir);
+		
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(Color.orange);
+		g2.setStroke(new BasicStroke(1));
+		System.out.println((int) (Math.cos(angle-30)*3) +xP+ " " + (int)(Math.sin(angle-30)*3)+yP);
+		
+		g2.drawLine(xP, yP, (int) (Math.cos(angle-30)*3) +xP, (int)(Math.sin(angle-30)*3)+yP);
+		g2.drawLine(xP, yP, (int) (Math.cos(angle+30)*3) +xP, (int)(Math.sin(angle+30)*3)+yP);
 		
 		g.setFont(new Font("Serif",Font.BOLD, 20));
 		g.setColor(Color.RED);
