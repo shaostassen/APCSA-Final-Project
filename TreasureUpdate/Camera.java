@@ -47,6 +47,11 @@ public class Camera implements KeyListener{
 		return checkGold;
 	}
 	
+	public double getDistance(int x, int y) 
+	{
+		return (yPos - y) * (yPos - y) + (xPos - x) * (xPos - x);
+	}
+	
 	public void update(int[][] map) {
 		if(forward) {
 			if(map[(int)(xPos + xDir * MOVE_SPEED)][(int)yPos] == 0 || map[(int)(xPos + xDir * MOVE_SPEED)][(int)yPos] == 7) {
