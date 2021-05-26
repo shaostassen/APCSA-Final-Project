@@ -26,11 +26,11 @@ public class Texture {
 		}
 	}
 	
-	public static Texture wood = new Texture("Textures/placeholder1.png", 64);
-	public static Texture brick = new Texture("Textures/placeholder2.png", 64);
-	public static Texture bluestone = new Texture("Textures/placeholder3.png", 64);
-	public static Texture stone = new Texture("Textures/placeholder4.png", 64);
+	
+	public static Texture wood = new Texture("Textures/1.png", 64);
+	public static Texture brick = new Texture("Textures/2.png", 64);
+	public static Texture bluestone = new Texture("Textures/3.png", 64);
+	public static Texture stone = new Texture("Textures/4.png", 64);
 
-	public static Texture gold = new Texture("Textures/placeholder5.png",64);
 
 }
