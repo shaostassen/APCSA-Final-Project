@@ -43,6 +43,10 @@ public class Camera implements KeyListener{
 		}
 	}
 	
+	public void setCheckGold(boolean newt) {
+		checkGold = false;
+	}
+	
 	public boolean ifCheckGold() {
 		return checkGold;
 	}
