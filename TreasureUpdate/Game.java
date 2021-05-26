@@ -62,7 +62,7 @@ public class Game extends JFrame implements Runnable{
 		setLocationRelativeTo(null);
 		setVisible(true);
 		sprites = new ArrayList<Sprite>(5);
-		addGold(5);
+		addGold(20);
 		start();
 	}
 	
@@ -115,12 +115,37 @@ public class Game extends JFrame implements Runnable{
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
+		
 		g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
+		
+		int[][] buffer = screen.getBuffer();
+		
+//		for (int i = 0; i < buffer.length; i++) { 
+//			for (int j = 0; j < buffer[i].length; j++) {
+//				System.out.print(buffer[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		
+
+		
 		g.setFont(new Font("Serif",Font.BOLD, 20));
 		g.setColor(Color.RED);
 		g.drawString(new String("Score: " + score), 550, 55);
+		
+		for (int x = 0; x < buffer.length; x++) {
+			for (int y = 0; y < buffer[x].length; y++) {
+				if (buffer[x][y] != 0) {
+					g.setColor(new Color(buffer[x][y]));
+					g.fillRect(x,y,1,1);
+				}
+			}
+		}
+		
 		bs.show();
 	}
+	
+
 	
 	public void run() {
 		long lastTime = System.nanoTime();
@@ -134,6 +159,7 @@ public class Game extends JFrame implements Runnable{
 			lastTime = now;
 			while (delta >= 1)//Make sure update is only happening 60 times a second
 			{
+				
 				if (camera.ifCheckGold()) {
 					if (7 == map[(int) camera.xPos][(int) camera.yPos]) {
 						map[(int) camera.xPos][(int) camera.yPos] = 0;
@@ -145,6 +171,7 @@ public class Game extends JFrame implements Runnable{
 						score++;
 						System.out.println();
 						addGold(1);
+						screen.updateSprites(sprites);
 					}
 				}
 				//handles all of the logic restricted time
@@ -154,19 +181,11 @@ public class Game extends JFrame implements Runnable{
 			}
 			render();//displays to the screen unrestricted time
 			
+			
 		
 		}
 	}
-	
-	public static void sort(ArrayList<Sprite> arr) {
-		for (int i = 1; i < arr.size(); i++) {
-			int spot = i;
-			while (spot > 0 && camera.getDistance() < camera.getDistance()) {
-				swap(arr,spot,spot-1);
-				spot--;
-			}
-		}
-	}
+
 	
 	public static void main(String [] args) {
 		Game game = new Game();
