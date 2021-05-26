@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -62,7 +63,7 @@ public class Game extends JFrame implements Runnable{
 		setLocationRelativeTo(null);
 		setVisible(true);
 		sprites = new ArrayList<Sprite>(5);
-		addGold(20);
+		addGold(5);
 		start();
 	}
 	
@@ -126,6 +127,52 @@ public class Game extends JFrame implements Runnable{
 //			}
 //			System.out.println();
 //		}
+		
+//		for(int i = 0;i<map[0].length;i++) {
+//	    	for (int j= 0;j<map.length;j++) {
+//	    		if(map[i][j]==0) {
+//	    			g.setColor(Color.white);
+//	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+//	    		}
+//	    		if(map[i][j]==1) {
+//	    			g.setColor(Color.black);
+//	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+//	    		}
+//	    		if(map[i][j]==2) {
+//	    			g.setColor(Color.black);
+//	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+//	    		}
+//	    		if(map[i][j]==3) {
+//	    			g.setColor(Color.black);
+//	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+//	    		}
+//	    		if(map[i][j]==4) {
+//	    			g.setColor(Color.black);
+//	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+//	    		}
+//	    		if(map[i][j]==7) {
+//	    			g.setColor(Color.white);
+//	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+//	    			g.setColor(new Color(242,252,26));
+//	    			g.fillOval(i*180/map[0].length+3,30+j*180/map.length+3,180/map[0].length-3,180/map.length-3);
+//	    			
+//	    		}
+//	    	}
+//	    }
+//	    g.setColor(Color.green);
+//	    int xP = (int) Math.round(camera.xPos);
+//	    int yP = (int) Math.round(camera.yPos);
+//		g.fillOval(xP*180/map[0].length-3,30+yP*180/map.length-3,180/map[0].length-3,180/map.length-3);
+//		
+//		int angle= (int) Math.asin(camera.yDir);
+//		
+//		Graphics2D g2 = (Graphics2D) g;
+//		g2.setColor(Color.orange);
+//		g2.setStroke(new BasicStroke(1));
+//		System.out.println((int) (Math.cos(angle-30)*3) +xP+ " " + (int)(Math.sin(angle-30)*3)+yP);
+//		
+//		g2.drawLine(xP, yP, (int) (Math.cos(angle-30)*3) +xP, (int)(Math.sin(angle-30)*3)+yP);
+//		g2.drawLine(xP, yP, (int) (Math.cos(angle+30)*3) +xP, (int)(Math.sin(angle+30)*3)+yP);
 		
 
 		
