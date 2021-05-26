@@ -5,6 +5,9 @@ public class Screen {
 	public int[][] map;
 	public int mapWidth, mapHeight, width, height;
 	public ArrayList<Texture> textures;
+	public double[] ZBuffer;
+	ArrayList<Sprite> sprites;
+	protected int[][] buffer = new int[640][480];
 	
 	public Screen(int[][] m, int mapW, int mapH, ArrayList<Texture> tex, int w, int h) {
 		map = m;
@@ -13,9 +16,11 @@ public class Screen {
 		textures = tex;
 		width = w;
 		height = h;
+		ZBuffer = new double[640];
+		sprites = new ArrayList<Sprite>(5);
 	}
 	
-	public int[] update(Camera camera, int[] pixels) {
+	public void/*int[]*/ update(Camera camera, int[] pixels) {
 		for(int n=0; n<pixels.length; n++) {
 			if(pixels[n] != Color.DARK_GRAY.getRGB()) pixels[n] = Color.DARK_GRAY.getRGB();
 		}
@@ -115,7 +120,90 @@ public class Screen {
 		    	else color = (textures.get(texNum).pixels[texX + (texY * textures.get(texNum).SIZE)]>>1) & 8355711;//Make y sides darker
 		    	pixels[x + y*(width)] = color;
 		    }
+		    //----------------------------------------------------
+		    ZBuffer[x] = perpWallDist;
+		    
+		   
+		    
 		}
-		return pixels;
+		//return pixels;
+	    
+//	    for (int i = 1; i < sprites.size(); i++) {
+//			int spot = i;
+//			while (spot > 0 && camera.getDistance(sprites.get(spot).getX(), sprites.get(spot).getY()) > camera.getDistance(sprites.get(spot-1).getX(), sprites.get(spot-1).getY())) {
+//				swap(sprites,spot,spot-1);
+//				spot--;
+//			}
+//		}
+//	    
+//	    resetBuffer();
+//	    
+//	    for (Sprite sprite: sprites) {
+//	    	
+//	    	final int w = 640, h = 480;
+//	    	
+//	    	double spriteX = sprite.getX() - camera.xPos;
+//	    	double spriteY = sprite.getY() - camera.yPos;
+//	    	
+//	    	double invDet = 1.0 / (camera.xPlane * camera.yDir - camera.xDir * camera.xPlane);
+//	    	
+//	    	double transformX = invDet * (camera.yDir * spriteX - camera.xDir * spriteY);
+//	    	double transformY = invDet * ((camera.yPlane * -1) * spriteX + camera.xPlane * spriteY);
+//	    	
+//	    	int spriteScreenX = (int)((w / 2) * (1 + transformX / transformY));
+//	    	
+//	    	int spriteHeight = Math.abs((int)(h / (transformY)));
+//	    	
+//	        int drawStartY = (-1* spriteHeight) / 2 + h / 2;
+//	        if (drawStartY < 0) {drawStartY = 0;}
+//	        int drawEndY = spriteHeight / 2 + h / 2;
+//	        if (drawEndY >= h) {drawEndY = h - 1;}
+//	        
+//	        int spriteWidth = Math.abs( (int) (h / (transformY)));
+//	        int drawStartX = (-1 * spriteWidth) / 2 + spriteScreenX;
+//	        if (drawStartX < 0) {drawStartX = 0;}
+//	        int drawEndX = spriteWidth / 2 + spriteScreenX;
+//	        if (drawEndX >= w) {drawEndX = w - 1;}
+//	        
+//	        final int texWidth = 405, texHeight = 394;
+//	        
+//	        for (int stripe = drawStartX; stripe < drawEndX; stripe++) {
+//	        	int texX = (int) (256 * (stripe - ((-1 * spriteWidth) / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
+//	        	if (transformY > 0 && stripe > 0 && stripe < w && transformY < ZBuffer[stripe]) {
+//	        		for(int y = drawStartY; y < drawEndY; y++) {
+//	        			 int d = (y) * 256 - h * 128 + spriteHeight * 128;
+//	        			 int texY = ((d * texHeight) / spriteHeight) / 256;
+//	        			 int color = SpriteTexture.gold.pixels[texX][texY];
+//	        			 if((color & 0x00FFFFFF) != 0) {buffer[y][stripe] = color;}
+//	        		} 
+//	        	}
+//	        }
+//	    	
+//	    }
+	    
+	}
+	
+	public int[][] getBuffer()
+	{
+		return buffer;
+	}
+
+	protected void resetBuffer()
+	{
+		for (int i = 0; i < buffer.length; i++) {
+			for (int j = 0; j < buffer[i].length; j++) {
+				buffer[i][j] = 0;
+			}
+		}
+	}
+	
+	private static void swap(ArrayList<Sprite> arr, int one, int two) {
+		Sprite temp = arr.get(one);
+		arr.set(one, arr.get(two));
+		arr.set(two, temp);
+	}
+	
+	public void updateSprites(ArrayList<Sprite> sprites) {
+		this.sprites = sprites;
 	}
 }
