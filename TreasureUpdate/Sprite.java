@@ -4,7 +4,7 @@ public class Sprite {
 
 	protected int x;
 	protected int y;
-	public static final Texture texture = Texture.gold;
+	public static final SpriteTexture texture = SpriteTexture.gold;
 	
 	public Sprite() {
 		x = 0;
