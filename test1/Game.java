@@ -169,10 +169,13 @@ public class Game extends JFrame implements Runnable{
 //		Graphics2D g2 = (Graphics2D) g;
 //		g2.setColor(Color.orange);
 //		g2.setStroke(new BasicStroke(1));
-//		System.out.println((int) (Math.cos(angle-30)*3) +xP+ " " + (int)(Math.sin(angle-30)*3)+yP);
-//		
-//		g2.drawLine(xP, yP, (int) (Math.cos(angle-30)*3) +xP, (int)(Math.sin(angle-30)*3)+yP);
-//		g2.drawLine(xP, yP, (int) (Math.cos(angle+30)*3) +xP, (int)(Math.sin(angle+30)*3)+yP);
+//              System.out.println(xP+" "+yP);
+		//System.out.println((int) (Math.cos(angle-30)*3) +xB+ " " + (int)(Math.sin(angle-30)*3)+yB);
+		//System.out.println((int) (Math.cos(angle+30)*3) +xB + " "+(int)(Math.sin(angle+30)*3)+yB);
+
+		g2.drawPolygon(new int[]{xB,(int) (Math.cos(360-angle-30)*6)+xB,(int) (Math.cos(angle+30)*6) +xB}, new int[] {yB,(int)(Math.sin(angle+30)*6)+yB,(int)(Math.sin(angle-30)*6)+yB},3 );
+		
+
 		
 
 		
