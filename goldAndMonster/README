@@ -1,0 +1,4 @@
+What we still need to do:
+
+- Shao: Add map variations (randomly generated or from a file), fix the persons angle in the Birds Eye Map, 
+- Jude: Add opening and closing screen, fix monster AI, make code better (comments and no instance variables)
