@@ -55,6 +55,7 @@ public class Game //This class is where the game is hosted and where the main me
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
 			{1,1,1,1,1,1,1,4,4,4,4,4,4,4,4}
 		}; //Currently, we have a fixed map. If we have time, we will make it auto-generated
+	protected int[][] cloudyMap;
 	
 	//We did not include getters, setters, toStrings, extra constructors, or equals because we are treating this class like the Driver
 	
@@ -253,24 +254,27 @@ public class Game //This class is where the game is hosted and where the main me
 		
 		
 		//Now we draw the minimap
-	
+	        cloudMap = m.makeCloudy(camera);//use the makeCloudy method make map only partially visible to the user
 		for(int i = 0;i<map[0].length;i++) { //For each column in the map
 	    	for (int j= 0;j<map.length;j++) { //For each row in the map
-	    		if(map[i][j]==0) { //If that row is zero
+	    		if(cloudMap[i][j]==0) { //If that row is zero
 	    			g.setColor(Color.white); //Set the color to white
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draws that rectangle
 	    		} //End of zero condition
-	    		if(map[i][j]==1 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4) { // If that square is a wall
+	    		if(cloudMap[i][j]==1 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4) { // If that square is a wall
 	    			g.setColor(Color.black); //Set the color to black
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draw that rectangle
 	    		} //End of wall check
-	    		if(map[i][j]==7) { //If that box is 7
+	    		if(cloudMap[i][j]==7) { //If that box is 7
 	    			g.setColor(Color.white); //Set the color to white
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draw a backround
-	    			//We took this part out but we can add gold
-	//    			g.setColor(new Color(242,252,26)); //Set the color to gold
-	//    			g.fillOval(i*180/map[0].length+3,30+j*180/map.length+3,180/map[0].length-3,180/map.length-3); //Draw a little circle
-	    		} // End of the if conditions
+	   			g.setColor(new Color(242,252,26)); //Set the color to gold
+	    			g.fillOval(i*180/map[0].length+3,30+j*180/map.length+3,180/map[0].length-3,180/map.length-3); //Draw a little circle
+	    		} // End of the gold check 
+			if (cloudMap[i][j] == 9) {
+    				g.setColor(Color.gray);
+    				g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+    			}
 	    		
 	    	} // end of the row traversal
 	    } //End of the column traversal
@@ -278,7 +282,7 @@ public class Game //This class is where the game is hosted and where the main me
 		g.setColor(Color.RED); //Sets the color to red
 		g.fillOval((int) (monster.getTrueX()*180/map[0].length+3),(int) (30+monster.getTrueY()*180/map.length+3),180/map[0].length-3,180/map.length-3); //Draws the monster
 		
-	    g.setColor(Color.green); //Sets the color to green
+	        g.setColor(Color.green); //Sets the color to green
 		g.fillOval((int)(camera.getxPos()*180/map[0].length-3),(int)(30+camera.getyPos()*180/map.length-3),180/map[0].length-3,180/map.length-3); //Draws the person
 	
 		Graphics2D g2 = (Graphics2D) g; //Makes a new graphics object
@@ -288,7 +292,23 @@ public class Game //This class is where the game is hosted and where the main me
 		int xPos = (int) (camera.getxPos()*180/map[0].length-3); //Gets the X position on the frame
 		int yPos = (int) (30+camera.getyPos()*180/map.length-3); //Gets the y position on the frame
 
-		g2.drawLine(5 + xPos,3 + yPos,5 + ((int) (xPos + (5*camera.getxDir()))), 3 + ((int) (yPos + (5*camera.getyDir())))); //Draws the headlights to show the angle on the minimap
+		int xCenter= xPos+(180/map[0].length)/2;//calculate x position of the center of the green dot
+		int yCenter= yPos+(180/map.length)/2;//calculate y position of the center of the green dot
+		double angle= (Math.asin(camera.yDir));//calculate angle of directions in radians
+		double changeAngle = Math.PI/6;//calculate the angle in radian of 30 degree angle
+		Graphics2D g2 = (Graphics2D) g;//initalize g2 by cast g to a Graphics2D object
+		g2.setColor(Color.orange);
+		g2.setStroke(new BasicStroke(1));//set color to orange and size of line to 2nd and 3rd quadrant
+		if (camera.xDir<0||camera.yDir<0&&camera.xDir<0) {//if the direction is in the 
+			g2.drawLine(xCenter, yCenter,(int)(Math.cos(angle+changeAngle)*-10 + xCenter),(int)(Math.sin(angle+changeAngle)*10 + yCenter));
+	    		g2.drawLine(xCenter, yCenter,(int)(Math.cos(angle-changeAngle)*-10 + xCenter),(int)(Math.sin(angle-changeAngle)*10 + yCenter));
+			//draw two line that is 30 degree from the user's angle
+		}
+		else {// else if in 1st and 4th quadrant
+			g2.drawLine(xCenter, yCenter,(int)(Math.cos(angle+changeAngle)*10 + xCenter),(int)(Math.sin(angle+changeAngle)*10 + yCenter));
+			g2.drawLine(xCenter, yCenter,(int)(Math.cos(angle-changeAngle)*10 + xCenter),(int)(Math.sin(angle-changeAngle)*10 + yCenter));
+			//draw two line that is 30 degree from the user's angle
+		}
 		
 		g.setFont(new Font("Serif",Font.BOLD, 20)); //Makes a new font
 		g.setColor(Color.RED); //Sets the color to red
