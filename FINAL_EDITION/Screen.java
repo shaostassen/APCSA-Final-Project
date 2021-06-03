@@ -229,7 +229,7 @@ public class Screen //Screen class to do the actual raycasting and create a appe
 	    		spriteY = sprite.getY() - camera.getyPos(); //Sets the position of the element to its rough Y
 	    	} else { //If the element is the Monster
 	    		spriteX = ((Monster) sprite).getTrueX() - camera.getxPos(); //Sets the position of the element to it's exact X
-	    		spriteY = ((Monster) sprite).getTrueY() - camera.getyPos(); //Sets the position of the element to it's exact Y
+	    		spriteY = ((Monster) sprite).getTrueY() - camera.getyPos()+1; //Sets the position of the element to it's exact Y
 	    	} //End of finding the positions of the sprites
 	    	
 	    	double invDet = 1.0 / (camera.getxPlane() * camera.getyDir() - camera.getxDir() * camera.getyPlane()); //Finds the constant that will help us slew the sprite to look natural
