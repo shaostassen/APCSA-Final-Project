@@ -271,9 +271,9 @@ public class Game //This class is where the game is hosted and where the main me
 	   			g.setColor(new Color(242,252,26)); //Set the color to gold
 	    			g.fillOval(i*180/map[0].length+3,30+j*180/map.length+3,180/map[0].length-3,180/map.length-3); //Draw a little circle
 	    		} // End of the gold check 
-			if (cloudMap[i][j] == 9) {
-    				g.setColor(Color.gray);
-    				g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);
+			if (cloudMap[i][j] == 9) {//if that box is 9
+    				g.setColor(Color.gray); 
+    				g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);//set color to gray and draw rectangle
     			}
 	    		
 	    	} // end of the row traversal
