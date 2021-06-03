@@ -67,6 +67,14 @@ public class Monster //Monster class that represents the enemy on the board
 		this.x = (int) x; //Sets the x to the user variable
 	} //X setter end
 
+	public int getDirection() {
+		return direction;
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+	
 	/**
 	 * Standard getter for the y
 	 * @param none
