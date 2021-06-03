@@ -364,7 +364,7 @@ public class Game //This class is where the game is hosted and where the main me
 					if (monsterTimer == 10) { monsterTimer = 0; monster.nextTexture(); moveMonster(); MONSTER_SPEED+=.000005;} //If it is time for the monster to move, reset the timer, move it, change the texture, and increase the speed
 					monsterTimer++; //Increment the monster timer
 					
-					if (Math.abs(monster.getTrueX() - camera.xPos) <= 1 && Math.abs(monster.getTrueY() - camera.yPos) <= 1) { // If the monster caught the user
+					if (Math.abs(monster.getTrueX() - camera.xPos) <= .5 && Math.abs(monster.getTrueY() - camera.yPos) <= .5) { // If the monster caught the user
 						gamePhase = 2; //Progress through the game
 						
 //						for (int i = 0; i < 10000; i++) {
