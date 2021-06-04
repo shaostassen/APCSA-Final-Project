@@ -39,8 +39,8 @@ public class Game //This class is where the game is hosted and where the main me
 	private double MONSTER_SPEED = .12; //The speed of the monster that will not change initially, only as the game progresses
 	private Screen screen; //The screen that will perform raycasting
 	private Monster monster; //The monster that will be smart enough to move around
-	private int[][] map;
-	private int[][] cloudMap;
+	private static int[][] map;
+	private static int[][] cloudMap;
 	
 	//We did not include getters, setters, toStrings, extra constructors, or equals because we are treating this class like the Driver
 	
@@ -240,24 +240,24 @@ public class Game //This class is where the game is hosted and where the main me
 		
 		
 		//Now we draw the minimap
-	    cloudyMap = makeCloudy(camera);//use the makeCloudy method make map only partially visible to the user
+	    cloudMap = makeCloudy(camera);//use the makeCloudy method make map only partially visible to the user
 		for(int i = 0;i<map[0].length;i++) { //For each column in the map
 	    	for (int j= 0;j<map.length;j++) { //For each row in the map
-	    		if(cloudyMap[i][j]==0) { //If that row is zero
+	    		if(cloudMap[i][j]==0) { //If that row is zero
 	    			g.setColor(Color.white); //Set the color to white
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draws that rectangle
 	    		} //End of zero condition
-	    		if(cloudyMap[i][j]==1 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4) { // If that square is a wall
+	    		if(cloudMap[i][j]==1 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4) { // If that square is a wall
 	    			g.setColor(Color.black); //Set the color to black
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draw that rectangle
 	    		} //End of wall check
-	    		if(cloudyMap[i][j]==7) { //If that box is 7
+	    		if(cloudMap[i][j]==7) { //If that box is 7
 	    			g.setColor(Color.white); //Set the color to white
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draw a backround
 	   			g.setColor(new Color(242,252,26)); //Set the color to gold
 	    			g.fillOval(i*180/map[0].length+3,30+j*180/map.length+3,180/map[0].length-3,180/map.length-3); //Draw a little circle
 	    		} // End of the gold check 
-			if (cloudyMap[i][j] == 9) {//if that box is 9
+			if (cloudMap[i][j] == 9) {//if that box is 9
     				g.setColor(Color.gray); 
     				g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);//set color to gray and draw rectangle
     			}
@@ -314,14 +314,14 @@ public class Game //This class is where the game is hosted and where the main me
 	 *@throws nothing
 	 */
 	public int[][] makeCloudy(Camera cam) { //run start
-		cloudMap = new int[map.length][map[0].length];//instantite a new map call cloudMap
+		cloudyMap = new int[map.length][map[0].length];//instantite a new map call cloudMap
 		for (int i = 0; i < map.length; i++) { // for each row on map
 			for (int j = 0; j < map[0].length; j++) {//for each column on map
 				if (Math.abs((Math.round(cam.getxPos()))-i)<3&&Math.abs((Math.round(cam.getyPos()))-j)<3)//if the distance b/t block to camera is less than 3 map length
-					cloudMap[i][j] = map[i][j];//cloud map equal to real map value
+					cloudyMap[i][j] = map[i][j];//cloud map equal to real map value
 
 				else {
-					cloudMap[i][j] = 9;// otherwise its value is nine
+					cloudyMap[i][j] = 9;// otherwise its value is nine
 				}
 			}//end column tranversal
 		}//end row tranversal
