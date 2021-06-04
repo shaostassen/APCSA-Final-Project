@@ -195,8 +195,8 @@ public class Screen //Screen class to do the actual raycasting and create a appe
 		    for(int y=drawStart; y<drawEnd; y++) { //For each pixel in the strip
 		    	int texY = (((y*2 - height + lineHeight) << 6) / lineHeight) / 2; //Were not sure how this syntax works, but it uses the heights to find the Y cordinate on the texture
 		    	int color; //Declares the color
-		    	if(side==0) color = textures.get(texNum).pixels[texX + (texY * textures.get(texNum).getSize())]; //Gets the texture from the image
-		    	else color = (textures.get(texNum).pixels[texX + (texY * textures.get(texNum).getSize())]>>1) & 8355711;//Make y sides darker on the same pixel, but were not sure how because the syntax is new
+		    	if(side==0) color = textures.get(texNum).getPixels()[texX + (texY * textures.get(texNum).getSize())]; //Gets the texture from the image
+		    	else color = (textures.get(texNum).getPixels()[texX + (texY * textures.get(texNum).getSize())]>>1) & 8355711;//Make y sides darker on the same pixel, but were not sure how because the syntax is new
 		    	pixels[x + y*(width)] = color; //Sets the pixel array to that color
 		    } //End of iterating though every strip
 		    
@@ -265,8 +265,8 @@ public class Screen //Screen class to do the actual raycasting and create a appe
 	        			 try { //Try's to do this, knowing there might be an error
 	        				 int color; //Establishes the color
 	        				 if (sprite instanceof Gold) { //if the sprite is a gold
-	        					 color = SpriteTexture.gold.pixels[texX][texY]; //Gets the color from the gold image
-	        				 } else { color = monster.curTexture.pixels[texX][texY]; } //If the image is the monster, it gets the texture from the current texture in the cycle
+	        					 color = SpriteTexture.gold.getPixels[texX][texY]; //Gets the color from the gold image
+	        				 } else { color = monster.curTexture.getPixels[texX][texY]; } //If the image is the monster, it gets the texture from the current texture in the cycle
 	        				 if((color & 0x00FFFFFF) != 0) {buffer[y][stripe] = color;} //If the color is not black, it is added to the buffer
 	        			 } catch (ArrayIndexOutOfBoundsException e) { //If there is an arrayIndexOutOfBoundsError
 	        				 continue; //Continues and ignores the problem
