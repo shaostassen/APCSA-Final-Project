@@ -280,12 +280,11 @@ public class Game //This class is where the game is hosted and where the main me
 
 		int xCenter= xPos+(180/map[0].length)/2;//calculate x position of the center of the green dot
 		int yCenter= yPos+(180/map.length)/2;//calculate y position of the center of the green dot
-		double angle= (Math.asin(camera.yDir));//calculate angle of directions in radians
+		double angle= (Math.asin(camera.getyDir()));//calculate angle of directions in radians
 		double changeAngle = Math.PI/6;//calculate the angle in radian of 30 degree angle
-		Graphics2D g2 = (Graphics2D) g;//initalize g2 by cast g to a Graphics2D object
 		g2.setColor(Color.orange);
 		g2.setStroke(new BasicStroke(1));//set color to orange and size of line to 2nd and 3rd quadrant
-		if (camera.xDir<0||camera.yDir<0&&camera.xDir<0) {//if the direction is in the 
+		if (camera.getxDir()<0||camera.getyDir()<0&&camera.getxDir()<0) {//if the direction is in the 
 			g2.drawLine(xCenter, yCenter,(int)(Math.cos(angle+changeAngle)*-10 + xCenter),(int)(Math.sin(angle+changeAngle)*10 + yCenter));
 	    		g2.drawLine(xCenter, yCenter,(int)(Math.cos(angle-changeAngle)*-10 + xCenter),(int)(Math.sin(angle-changeAngle)*10 + yCenter));
 			//draw two line that is 30 degree from the user's angle
@@ -355,7 +354,7 @@ public class Game //This class is where the game is hosted and where the main me
 					e.printStackTrace(); //We print the problem
 				} //End of showing the loading screen
 				
-				if ((camera.clickX >= 223 && camera.clickX <= 397) && (camera.clickY >= 275 && camera.clickY <= 339)) { //If the user clicked on the button to start
+				if ((camera.getClickX() >= 223 && camera.getClickX() <= 397) && (camera.getClickY() >= 275 && camera.getClickY() <= 339)) { //If the user clicked on the button to start
 					gamePhase = 1; //Progress through the game cycle
 				} //End of ready condition
 				
@@ -370,7 +369,7 @@ public class Game //This class is where the game is hosted and where the main me
 					if (monsterTimer == 10) { monsterTimer = 0; monster.nextTexture(); moveMonster(); MONSTER_SPEED+=.00005;} //If it is time for the monster to move, reset the timer, move it, change the texture, and increase the speed
 					monsterTimer++; //Increment the monster timer
 					
-					if (Math.abs(monster.getTrueX() - camera.xPos) <= 1 && Math.abs(monster.getTrueY() - camera.yPos) <= 1) { // If the monster caught the user
+					if (Math.abs(monster.getTrueX() - camera.getxPos()) <= 1 && Math.abs(monster.getTrueY() - camera.getyPos()) <= 1) { // If the monster caught the user
 						gamePhase = 2; //Progress through the game
 						
 //						for (int i = 0; i < 10000; i++) {
@@ -429,13 +428,13 @@ public class Game //This class is where the game is hosted and where the main me
 					if (camera.isCheckGold()) { //If there is gold near by
 							
 							for (int i = 0; i < sprites.size(); i++) { //For each sprite
-								if ((sprites.get(i).getX() == ((int) camera.xPos) && sprites.get(i).getY() == ((int) camera.yPos)) || (sprites.get(i).getX()-1 == ((int) camera.xPos) && sprites.get(i).getY() == ((int) camera.yPos)) || (sprites.get(i).getX()+1 == ((int) camera.xPos) && sprites.get(i).getY() == ((int) camera.yPos)) || (sprites.get(i).getX() == ((int) camera.xPos) && sprites.get(i).getY()-1 == ((int) camera.yPos)) || (sprites.get(i).getX() == ((int) camera.xPos) && sprites.get(i).getY()+1 == ((int) camera.yPos)) || (sprites.get(i).getX()+1 == ((int) camera.xPos) && sprites.get(i).getY()+1 == ((int) camera.yPos)) || (sprites.get(i).getX()+1 == ((int) camera.xPos) && sprites.get(i).getY()-1 == ((int) camera.yPos)) || (sprites.get(i).getX()-1 == ((int) camera.xPos) && sprites.get(i).getY()+1 == ((int) camera.yPos)) || (sprites.get(i).getX()-1 == ((int) camera.xPos) && sprites.get(i).getY()-1 == ((int) camera.yPos))) { //If that sprite is within picking up distance
+								if ((sprites.get(i).getX() == ((int) camera.getxPos()) && sprites.get(i).getY() == ((int) camera.getyPos())) || (sprites.get(i).getX()-1 == ((int) camera.getxPos()) && sprites.get(i).getY() == ((int) camera.getyPos())) || (sprites.get(i).getX()+1 == ((int) camera.getxPos()) && sprites.get(i).getY() == ((int) camera.getyPos())) || (sprites.get(i).getX() == ((int) camera.getxPos()) && sprites.get(i).getY()-1 == ((int) camera.getyPos())) || (sprites.get(i).getX() == ((int) camera.getxPos()) && sprites.get(i).getY()+1 == ((int) camera.getyPos())) || (sprites.get(i).getX()+1 == ((int) camera.getxPos()) && sprites.get(i).getY()+1 == ((int) camera.getyPos())) || (sprites.get(i).getX()+1 == ((int) camera.getxPos()) && sprites.get(i).getY()-1 == ((int) camera.getyPos())) || (sprites.get(i).getX()-1 == ((int) camera.getxPos()) && sprites.get(i).getY()+1 == ((int) camera.getyPos())) || (sprites.get(i).getX()-1 == ((int) camera.getxPos()) && sprites.get(i).getY()-1 == ((int) camera.getyPos()))) { //If that sprite is within picking up distance
 									if (sprites.get(i) instanceof Gold) { //if that sprite is a gold
 										map[sprites.get(i).getX()][sprites.get(i).getY()] = 0; //Sets that sprites position to zero
 										sprites.remove(i); //Removes it from the sprite list
 										addGold(1); //Adds another gold in a different spot
 										score++; //Increases the score
-										camera.checkGold =false; //Makes the check if gold false
+										camera.setCheckGold(false); //Makes the check if gold false
 										break; //Breaks from the loop
 									} //End of if gold condition
 								} //End of in vicinity condition
@@ -457,7 +456,6 @@ public class Game //This class is where the game is hosted and where the main me
 		} //End of the while running loop
 		
 	} //Run end
-	
 	protected void moveMonster() //Move monster method
 	{ //Move monster start
 		
