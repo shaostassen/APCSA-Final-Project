@@ -533,7 +533,6 @@ public class Game //This class is where the game is hosted and where the main me
 	protected void generateMap() //Method to create the maze
 	{ //Generate map start
 		int mapOption =1 + ((int) (Math.random() * 3));
-		mapOption = 3;
 		int start = (mapOption-1)*16;
 		File file = new File("MapOptions.txt");
 		Scanner fiin = null;
