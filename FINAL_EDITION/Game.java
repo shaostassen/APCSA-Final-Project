@@ -40,7 +40,7 @@ public class Game //This class is where the game is hosted and where the main me
 	private Screen screen; //The screen that will perform raycasting
 	private Monster monster; //The monster that will be smart enough to move around
 	private int[][] map;
-	private int[][] cloudyMap;
+	private int[][] cloudMap;
 	
 	//We did not include getters, setters, toStrings, extra constructors, or equals because we are treating this class like the Driver
 	
