@@ -5,13 +5,13 @@ public class Screen //Screen class to do the actual raycasting and create a appe
 	extends Object //Makes it clear that this extends the object
 { //Screen start
 	
-	protected int[][] map; //Has a 2-D Array which corresponds to the walls
-	protected int mapWidth, mapHeight, width, height; //Values for the size of the map, and the size of the frame
-	protected ArrayList<Texture> textures; //An arraylist of textures for the walls
-	protected double[] ZBuffer; //A Z-Buffer which keeps track of the perpendicular distance of each column in the frame
-	protected ArrayList<Sprite> sprites; //An arraylist of sprites to be rendered
-	protected int[][] buffer; //A buffer array which will contain the sprites to be put on top of the walls
-	protected Monster monster; //A monster to keep track of the animations
+	private int[][] map; //Has a 2-D Array which corresponds to the walls
+	private int mapWidth, mapHeight, width, height; //Values for the size of the map, and the size of the frame
+	private ArrayList<Texture> textures; //An arraylist of textures for the walls
+	private double[] ZBuffer; //A Z-Buffer which keeps track of the perpendicular distance of each column in the frame
+	private ArrayList<Sprite> sprites; //An arraylist of sprites to be rendered
+	private int[][] buffer; //A buffer array which will contain the sprites to be put on top of the walls
+	private Monster monster; //A monster to keep track of the animations
 	
 	/**
 	 * All parameter constructor for the Screen
@@ -73,7 +73,7 @@ public class Screen //Screen class to do the actual raycasting and create a appe
 	 * @param one is the index of the first element
 	 * @param two is the index of the second element
 	 */
-	protected static void swap(ArrayList<Sprite> sprites2, int one, int two) //Swap method
+	private static void swap(ArrayList<Sprite> sprites2, int one, int two) //Swap method
 	{ //Swap start
 		Sprite temp = sprites2.get(one); //Sets the first element to a temp
 		sprites2.set(one, sprites2.get(two)); //Replaces the first element with the second one
