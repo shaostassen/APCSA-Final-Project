@@ -67,7 +67,7 @@ public class Maze {
 		grid = new int[oldGrid.length][oldGrid[0].length];
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
-				if (Math.abs((Math.round(cam.yPos))-i)<3&&Math.abs((Math.round(cam.xPos))-j)<3)
+				if (Math.abs((Math.round(cam.xPos))-i)<3&&Math.abs((Math.round(cam.yPos))-j)<3)
 					grid[i][j] = oldGrid[i][j];
 
 				else {
