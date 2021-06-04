@@ -84,6 +84,7 @@ public class Game //This class is where the game is hosted and where the main me
 		sprites = new ArrayList<Sprite>(6); //Creates an array list of sprites with the initial capacity of 6 objects
 		addGold(5); //Uses a helper method to add 5 gold to the maze
 		sprites.add(monster); //Adds the monster to the sprites
+		
 		start(); //Starts the game
 		
 	} //Default constructor end
