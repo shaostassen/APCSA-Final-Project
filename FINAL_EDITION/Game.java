@@ -36,27 +36,10 @@ public class Game //This class is where the game is hosted and where the main me
 	private ArrayList<Texture> textures; //Array list of texture possibilities for the walls
 	private ArrayList<Sprite> sprites; //Arraylist for sprites on the map
 	private Camera camera; //The camera that reads the user input
-	private double MONSTER_SPEED = .1; //The speed of the monster that will not change initially, only as the game progresses
+	private double MONSTER_SPEED = .12; //The speed of the monster that will not change initially, only as the game progresses
 	private Screen screen; //The screen that will perform raycasting
 	private Monster monster; //The monster that will be smart enough to move around
-	private int[][] map = 
-		{
-			{1,1,1,1,1,1,1,1,2,2,2,2,2,2,2},
-			{1,0,0,0,0,0,0,0,2,0,0,0,0,0,2},
-			{1,0,3,3,3,3,3,0,0,0,0,0,0,0,2},
-			{1,0,3,0,0,0,3,0,2,0,0,0,0,0,2},
-			{1,0,3,0,0,0,3,0,2,2,2,0,2,2,2},
-			{1,0,3,0,0,0,3,0,2,0,0,0,0,0,2},
-			{1,0,3,3,0,3,3,0,2,0,0,0,0,0,2},
-			{1,0,0,0,0,0,0,0,2,0,0,0,0,0,2},
-			{1,1,1,1,1,1,1,1,4,4,4,0,4,4,4},
-			{1,0,0,0,0,0,1,4,0,0,0,0,0,0,4},
-			{1,0,0,0,0,0,1,4,0,0,0,0,0,0,4},
-			{1,0,0,0,0,0,1,4,0,3,3,3,3,0,4},
-			{1,0,0,0,0,0,1,4,0,3,3,3,3,0,4},
-			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
-			{1,1,1,1,1,1,1,4,4,4,4,4,4,4,4}
-		}; //Currently, we have a fixed map. If we have time, we will make it auto-generated
+	private int[][] map;
 	private int[][] cloudyMap;
 	
 	//We did not include getters, setters, toStrings, extra constructors, or equals because we are treating this class like the Driver
@@ -100,6 +83,7 @@ public class Game //This class is where the game is hosted and where the main me
 		sprites = new ArrayList<Sprite>(6); //Creates an array list of sprites with the initial capacity of 6 objects
 		addGold(5); //Uses a helper method to add 5 gold to the maze
 		sprites.add(monster); //Adds the monster to the sprites
+		generateMap();
 		start(); //Starts the game
 		
 	} //Default constructor end
@@ -363,10 +347,10 @@ public class Game //This class is where the game is hosted and where the main me
 				
 				while (delta >= 1) { //Make sure update is only happening 60 times a second
 					
-					if (monsterTimer == 10) { monsterTimer = 0; monster.nextTexture(); moveMonster(); MONSTER_SPEED+=.000005;} //If it is time for the monster to move, reset the timer, move it, change the texture, and increase the speed
+					if (monsterTimer == 10) { monsterTimer = 0; monster.nextTexture(); moveMonster(); MONSTER_SPEED+=.00005;} //If it is time for the monster to move, reset the timer, move it, change the texture, and increase the speed
 					monsterTimer++; //Increment the monster timer
 					
-					if (Math.abs(monster.getTrueX() - camera.xPos) <= .5 && Math.abs(monster.getTrueY() - camera.yPos) <= .5) { // If the monster caught the user
+					if (Math.abs(monster.getTrueX() - camera.xPos) <= 1 && Math.abs(monster.getTrueY() - camera.yPos) <= 1) { // If the monster caught the user
 						gamePhase = 2; //Progress through the game
 						
 //						for (int i = 0; i < 10000; i++) {
@@ -545,6 +529,53 @@ public class Game //This class is where the game is hosted and where the main me
 		} //End of best direction checker and mover	
 		
 	} //Move monster end
+	
+	protected void generateMap() //Method to create the maze
+	{ //Generate map start
+		int mapOption =1 + ((int) (Math.random() * 3));
+		mapOption = 3;
+		int start = (mapOption-1)*16;
+		File file = new File("MapOptions.txt");
+		Scanner fiin = null;
+		try {
+			fiin = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < start+1; i++) {
+			fiin.nextLine();
+		}
+		
+		map = new int[15][15];
+		for (int i = 0; i < 15; i++) {
+			String[] temp = (fiin.nextLine()).split(",");
+			for (int j = 0; j < 15; j++) {
+				map[i][j] = Integer.parseInt(temp[j]);
+			}
+		}
+		
+		
+		switch(mapOption)
+		{
+		case 1:
+			break;
+		case 2:
+			monster.setTrueX(14);
+			monster.setTrueY(4);
+			camera.setxPos(2);
+			camera.setyPos(2);
+			break;
+		case 3:
+			monster.setTrueX(13);
+			monster.setTrueY(12);
+			camera.setxPos(1.5);
+			camera.setyPos(1.5);
+			break;
+		}
+		
+	} //Generate map end
 	
 	/**
 	 * Main method where the program is run from
