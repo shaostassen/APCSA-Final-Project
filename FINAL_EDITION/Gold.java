@@ -3,8 +3,8 @@ public class Gold //Gold class that represents a gold on the map
 	implements Sprite //Makes it known this is a sprite to use polymorphism
 { //Gold start
 
-	protected int x; //Contains an x position
-	protected int y; //Contains a y position
+	private int x; //Contains an x position
+	private int y; //Contains a y position
 	
 	public static final SpriteTexture texture = SpriteTexture.gold; //Sets the unchangeable texture for all gold to the sprite texture for gold
 	
