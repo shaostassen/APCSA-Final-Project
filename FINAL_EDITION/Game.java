@@ -25,21 +25,21 @@ public class Game //This class is where the game is hosted and where the main me
 	
 	private static final long serialVersionUID = 1L; //Im not sure what this is, but we get an error if we don't include it
 	
-	protected int score; //Int for the players score
-	protected int gamePhase; //Int to progress through the game
-	protected int mapWidth; //Int for the width of the map
-	protected int mapHeight; //Int for the height of the map
-	protected Thread thread; //Int for the thread of this game (so we can run things simultaneously)
-	protected boolean running; //Boolean for if the game is running
-	protected BufferedImage image; //Image for what we are drawing
-	protected int[] pixels; //Array of pixels for the raycasting
-	protected ArrayList<Texture> textures; //Array list of texture possibilities for the walls
-	protected ArrayList<Sprite> sprites; //Arraylist for sprites on the map
-	protected Camera camera; //The camera that reads the user input
-	protected double MONSTER_SPEED = .1; //The speed of the monster that will not change initially, only as the game progresses
-	protected Screen screen; //The screen that will perform raycasting
-	protected Monster monster; //The monster that will be smart enough to move around
-	protected int[][] map = 
+	private int score; //Int for the players score
+	private int gamePhase; //Int to progress through the game
+	private int mapWidth; //Int for the width of the map
+	private int mapHeight; //Int for the height of the map
+	private Thread thread; //Int for the thread of this game (so we can run things simultaneously)
+	private boolean running; //Boolean for if the game is running
+	private BufferedImage image; //Image for what we are drawing
+	private int[] pixels; //Array of pixels for the raycasting
+	private ArrayList<Texture> textures; //Array list of texture possibilities for the walls
+	private ArrayList<Sprite> sprites; //Arraylist for sprites on the map
+	private Camera camera; //The camera that reads the user input
+	private double MONSTER_SPEED = .1; //The speed of the monster that will not change initially, only as the game progresses
+	private Screen screen; //The screen that will perform raycasting
+	private Monster monster; //The monster that will be smart enough to move around
+	private int[][] map = 
 		{
 			{1,1,1,1,1,1,1,1,2,2,2,2,2,2,2},
 			{1,0,0,0,0,0,0,0,2,0,0,0,0,0,2},
@@ -57,7 +57,7 @@ public class Game //This class is where the game is hosted and where the main me
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
 			{1,1,1,1,1,1,1,4,4,4,4,4,4,4,4}
 		}; //Currently, we have a fixed map. If we have time, we will make it auto-generated
-	protected int[][] cloudyMap;
+	private int[][] cloudyMap;
 	
 	//We did not include getters, setters, toStrings, extra constructors, or equals because we are treating this class like the Driver
 	
@@ -132,7 +132,7 @@ public class Game //This class is where the game is hosted and where the main me
 	 * @return nothing
 	 * @throws nothing
 	 */
-	protected void addGold(int gold) //Gold adder
+	private void addGold(int gold) //Gold adder
 	{ // Gold adder start
 		for (int i = 0; i < gold; i++) { //For each of the gold that needs to be added
 			int x = 0, y = 0; //Declares the x and y 
@@ -152,7 +152,7 @@ public class Game //This class is where the game is hosted and where the main me
 	 * @return nothing
 	 * @throws nothing
 	 */
-	protected synchronized void start() //Game starter. It being synchronized means it is the only thing that can be run at the time
+	private synchronized void start() //Game starter. It being synchronized means it is the only thing that can be run at the time
 	{ //Start start
 		running = true; //Sets running to true
 		thread.start(); //Starts up the run method
@@ -164,7 +164,7 @@ public class Game //This class is where the game is hosted and where the main me
 	 * @return nothing
 	 * @throws InterruptedException if it is interrupted
 	 */
-	protected synchronized void stop() //Game stopper It being synchronized means it is the only thing that can be run at the time
+	private synchronized void stop() //Game stopper It being synchronized means it is the only thing that can be run at the time
 	{ //Stop start
 		running = false; //sets running to false
 		try { //Try to do this thing
@@ -180,7 +180,7 @@ public class Game //This class is where the game is hosted and where the main me
 	 * @returns nothing
 	 * @throws IOException if the file is not found
 	 */
-	protected void showStart() //Method to show the starting page
+	private void showStart() //Method to show the starting page
 			throws IOException //throws an io exception if the file is not found
 	{ //Show start start
 		
@@ -204,7 +204,7 @@ public class Game //This class is where the game is hosted and where the main me
 	 * @return nothing
 	 * @throws IOException if the file is not found
 	 */
-	protected void end() //Method to end the program
+	private void end() //Method to end the program
 			throws IOException //Throws this exception if the file is not found
 	{ //end start
 		BufferedImage img = ImageIO.read(new File("close.jfif")); //Imports a picture that is the closing screen
