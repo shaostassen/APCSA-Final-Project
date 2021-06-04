@@ -16,9 +16,9 @@ public class Texture //The texture class will hold and process the texture of wa
 	extends Object //Makes it clear that this is a child of the object class
 { //Texture class start 
 	
-	protected int[] pixels; //This class contains an array of pixels that will be accessed in order to draw the textures in the screen and game class.
-	protected String loc; //This class also contains a string that refers to the name of the file that contains the image
-	protected int size; //This class contains a int that stores the size of the image
+	private int[] pixels; //This class contains an array of pixels that will be accessed in order to draw the textures in the screen and game class.
+	private String loc; //This class also contains a string that refers to the name of the file that contains the image
+	private int size; //This class contains a int that stores the size of the image
 	
 	/**
 	 * No parameter constructor for the Texture class
