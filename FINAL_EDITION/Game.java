@@ -314,7 +314,7 @@ public class Game //This class is where the game is hosted and where the main me
 	 *@throws nothing
 	 */
 	public int[][] makeCloudy(Camera cam) { //run start
-		cloudyMap = new int[map.length][map[0].length];//instantite a new map call cloudMap
+		int[][] cloudyMap = new int[map.length][map[0].length];//instantite a new map call cloudMap
 		for (int i = 0; i < map.length; i++) { // for each row on map
 			for (int j = 0; j < map[0].length; j++) {//for each column on map
 				if (Math.abs((Math.round(cam.getxPos()))-i)<3&&Math.abs((Math.round(cam.getyPos()))-j)<3)//if the distance b/t block to camera is less than 3 map length
@@ -325,7 +325,7 @@ public class Game //This class is where the game is hosted and where the main me
 				}
 			}//end column tranversal
 		}//end row tranversal
-		return cloudMap;
+		return cloudyMap;
 
 	}//end of method
 	/**
