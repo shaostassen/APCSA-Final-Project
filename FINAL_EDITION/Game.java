@@ -215,7 +215,7 @@ public class Game //This class is where the game is hosted and where the main me
 	 * @return nothing
 	 * @throws NullPointerException or ArrayIndexOutOfBoundsException if the variables are not handled properly
 	 */
-	public void render() //Render method
+         public void render() //Render method
 	{ //Render start
 		
 		BufferStrategy bs = getBufferStrategy(); //Makes a buffer strategy that allows us to paint on Jframes
@@ -240,24 +240,24 @@ public class Game //This class is where the game is hosted and where the main me
 		
 		
 		//Now we draw the minimap
-	        cloudMap = m.makeCloudy(camera);//use the makeCloudy method make map only partially visible to the user
+	    cloudyMap = makeCloudy(camera);//use the makeCloudy method make map only partially visible to the user
 		for(int i = 0;i<map[0].length;i++) { //For each column in the map
 	    	for (int j= 0;j<map.length;j++) { //For each row in the map
-	    		if(cloudMap[i][j]==0) { //If that row is zero
+	    		if(cloudyMap[i][j]==0) { //If that row is zero
 	    			g.setColor(Color.white); //Set the color to white
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draws that rectangle
 	    		} //End of zero condition
-	    		if(cloudMap[i][j]==1 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4) { // If that square is a wall
+	    		if(cloudyMap[i][j]==1 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4) { // If that square is a wall
 	    			g.setColor(Color.black); //Set the color to black
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draw that rectangle
 	    		} //End of wall check
-	    		if(cloudMap[i][j]==7) { //If that box is 7
+	    		if(cloudyMap[i][j]==7) { //If that box is 7
 	    			g.setColor(Color.white); //Set the color to white
 	    			g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length); //Draw a backround
 	   			g.setColor(new Color(242,252,26)); //Set the color to gold
 	    			g.fillOval(i*180/map[0].length+3,30+j*180/map.length+3,180/map[0].length-3,180/map.length-3); //Draw a little circle
 	    		} // End of the gold check 
-			if (cloudMap[i][j] == 9) {//if that box is 9
+			if (cloudyMap[i][j] == 9) {//if that box is 9
     				g.setColor(Color.gray); 
     				g.fillRect(i*180/map[0].length,30+j*180/map.length,180/map[0].length,180/map.length);//set color to gray and draw rectangle
     			}
