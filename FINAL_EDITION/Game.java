@@ -9,8 +9,10 @@ import java.awt.image.DataBufferInt; //Imports the DataBufferInt which will be u
 
 import java.io.File; //Imports the File class to reference to pictures and text files
 import java.io.IOException; //Imports a special exception required to use files in case it is not there
+import java.io.FileNotFoundException;
 
 import java.util.ArrayList; //Imports the ArrayList class to have arrays
+import java.util.Scanner;
 
 import javax.imageio.ImageIO; //Imports the imageIO class to read images
 
