@@ -77,13 +77,13 @@ public class Game //This class is where the game is hosted and where the main me
 		textures.add(Texture.STONE); //Adds stone to the texture array
 		camera = new Camera(4.5, 4.5, 1, 0, 0, -.66); //Makes a new camera and positions the user in it in the starting room
 		monster = new Monster(6,11); //Creates a new monster and adds it to the maze
+		generateMap();
 		screen = new Screen(map, mapWidth, mapHeight, textures, 640, 480, monster); //Creates a new screen with the necessary variables
 		addKeyListener(camera); //Adds a key listener, the camera, so we can recognize keys
 		addMouseListener(camera); //Adds a mouse listener, the camera, so we can recognize clicks
 		sprites = new ArrayList<Sprite>(6); //Creates an array list of sprites with the initial capacity of 6 objects
 		addGold(5); //Uses a helper method to add 5 gold to the maze
 		sprites.add(monster); //Adds the monster to the sprites
-		generateMap();
 		start(); //Starts the game
 		
 	} //Default constructor end
