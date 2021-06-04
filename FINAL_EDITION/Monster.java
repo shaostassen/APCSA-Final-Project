@@ -3,14 +3,14 @@ public class Monster //Monster class that represents the enemy on the board
 	implements Sprite //Shows that this is a sprite for grouping and polymorphism
 { //Monster start
 	
-	protected double x; //Double that refers to the x position on the board (can be in-between points on the array)
-	protected double y; //Double that refers to the x position on the board (can be in-between points on the array)
+	private double x; //Double that refers to the x position on the board (can be in-between points on the array)
+	private double y; //Double that refers to the x position on the board (can be in-between points on the array)
 	
-	public static final SpriteTexture texture1 = SpriteTexture.monster1; //Establishes it's first possible texture (See SpriteTexure for more details), which is for all Monsters and can not be changed
-	public static final SpriteTexture texture2 = SpriteTexture.monster2; //Establishes it's second possible texture (See SpriteTexure for more details), which is for all Monsters and can not be changed
-	public static final SpriteTexture texture3 = SpriteTexture.monster3; //Establishes it's third possible texture (See SpriteTexure for more details), which is for all Monsters and can not be changed
-	protected SpriteTexture curTexture; //Has a reference to whatever the current texture of the monster is
-	protected int textureCount; //Keeps track of where they are in the texture animation cycle
+	private static final SpriteTexture texture1 = SpriteTexture.monster1; //Establishes it's first possible texture (See SpriteTexure for more details), which is for all Monsters and can not be changed
+	private static final SpriteTexture texture2 = SpriteTexture.monster2; //Establishes it's second possible texture (See SpriteTexure for more details), which is for all Monsters and can not be changed
+	private static final SpriteTexture texture3 = SpriteTexture.monster3; //Establishes it's third possible texture (See SpriteTexure for more details), which is for all Monsters and can not be changed
+	private SpriteTexture curTexture; //Has a reference to whatever the current texture of the monster is
+	private int textureCount; //Keeps track of where they are in the texture animation cycle
 	
 	/**
 	 * Default constructor for the monster
