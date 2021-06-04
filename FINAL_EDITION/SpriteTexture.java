@@ -16,9 +16,9 @@ public class SpriteTexture //Sprite Texture class that is similar to the texture
 	extends Object //Makes it clear that this class extends the universal parent, object
 { //Sprite texture start
 	
-	protected int[][] pixels; //Instead of a 1-D array to hold the pixels like the Texture, the SpriteTexture is much more complex so it must be held in a 2-D Array
-	protected String loc; //String that points to the location of the image
-	protected int size; //int representing the total size of the picture
+	private int[][] pixels; //Instead of a 1-D array to hold the pixels like the Texture, the SpriteTexture is much more complex so it must be held in a 2-D Array
+	private String loc; //String that points to the location of the image
+	private int size; //int representing the total size of the picture
 	
 	/**
 	 * Default constructor for the SpriteTexure
