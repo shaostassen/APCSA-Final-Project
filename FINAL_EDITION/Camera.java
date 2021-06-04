@@ -8,17 +8,17 @@ public class Camera //Camera class which uses input to store information about t
 	implements KeyListener, MouseListener //It can listen for keys and mouse presses
 { //Camera start
 	
-	protected double xPos, yPos, xDir, yDir, xPlane, yPlane; //See below
+	private double xPos, yPos, xDir, yDir, xPlane, yPlane; //See below
 	/*
 	 * xPos and yPos = the physical location of the player on the map
 	 * xDir and yDir = the direction that the player is facing
 	 * xPlane and yPlane is what the player can see from his perspective, like the FOV
 	 */
-	protected boolean left, right, forward, back; //Declares booleans that will be used to see if the user wants to go areas
-	protected final double MOVE_SPEED = .08; //Finalizes the move speed to a certain double
-	protected final double ROTATION_SPEED = .045; //Finalizes the rotation speed to a certain double
-	protected boolean checkGold; //This will be used to see if the user is checking for gold
-	protected int clickX, clickY; //This will be used to store the location of the users clicks
+	private boolean left, right, forward, back; //Declares booleans that will be used to see if the user wants to go areas
+	private final double MOVE_SPEED = .08; //Finalizes the move speed to a certain double
+	private final double ROTATION_SPEED = .045; //Finalizes the rotation speed to a certain double
+	private boolean checkGold; //This will be used to see if the user is checking for gold
+	private int clickX, clickY; //This will be used to store the location of the users clicks
 	
 	//We did not include a default parameter constructor, toString, equals, and some getters/setters because there is a specific way we want the camera to be used
 	
