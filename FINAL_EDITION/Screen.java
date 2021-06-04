@@ -265,8 +265,8 @@ public class Screen //Screen class to do the actual raycasting and create a appe
 	        			 try { //Try's to do this, knowing there might be an error
 	        				 int color; //Establishes the color
 	        				 if (sprite instanceof Gold) { //if the sprite is a gold
-	        					 color = SpriteTexture.gold.getPixels[texX][texY]; //Gets the color from the gold image
-	        				 } else { color = monster.curTexture.getPixels[texX][texY]; } //If the image is the monster, it gets the texture from the current texture in the cycle
+	        					 color = SpriteTexture.gold.getPixels()[texX][texY]; //Gets the color from the gold image
+	        				 } else { color = monster.curTexture.getPixels()[texX][texY]; } //If the image is the monster, it gets the texture from the current texture in the cycle
 	        				 if((color & 0x00FFFFFF) != 0) {buffer[y][stripe] = color;} //If the color is not black, it is added to the buffer
 	        			 } catch (ArrayIndexOutOfBoundsException e) { //If there is an arrayIndexOutOfBoundsError
 	        				 continue; //Continues and ignores the problem
